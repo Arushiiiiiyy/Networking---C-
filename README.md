@@ -59,7 +59,7 @@ scratch.
 
 COMMAND LINE INTERFACE-----
 
-Your client and server must be executable with the following arguments, <br>
+Client and server must be executable with the following arguments, <br>
 supporting two modes of operation.<br><br>
 
 Server:<br>
@@ -76,3 +76,36 @@ Chat Mode<br>
 
 [loss_rate]: An optional floating-point value between 0.0 and 1.0 indicating the packet loss probability.
  Default value=0.0.
+
+
+SOME INSTALLATIONS -----------
+
+Linux<br>
+Step1: Install the library<br>
+In the terminal, run the following command to update package lists and install the required package (libssl-dev):<br>
+sudo apt update && sudo apt install libssl-dev<br>
+Step 2: Compile the Code Correctly<br>
+Once the library is installed, Code can be compiled. You do not need the special -I and -L <br>
+flags that were required for macOS.<br>
+
+Use this simple command template to compile the program. Replace your_program.c and <br>
+-o your_program with actual filenames.<br>
+
+gcc your_program.c -o your_program -lcrypto<br><br><br><br>
+
+
+MacOS
+Step 1: Install the OpenSSL Library<br>
+Now, use Homebrew to install the OpenSSL library. It’s a simple, one-line command.<br>
+
+In the Terminal, run:
+<br>
+brew install openssl<br>
+Step 2: Compile the Code Correctly<br>
+Because Homebrew installs OpenSSL in a special location, you can’t just use a simple gcc command. 
+You must include special flags to tell the compiler where to find the OpenSSL files.<br>
+
+Use this specific command template to compile your program. Replace your_program.c <br>
+and -o your_program with your actual filenames.<br>
+
+gcc your_program.c -o your_program -I$(brew --prefix openssl)/include -L$(brew --prefix openssl)/lib -lcrypto<br>
